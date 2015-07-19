@@ -22,7 +22,8 @@
 
 @interface ProViewController ()
 @property (nonatomic, weak) DJIInspireGimbal *mGimbal;
-@property (weak, nonatomic) DJIInspireCamera* camera;
+@property (nonatomic, weak) DJIInspireCamera *camera;
+@property (nonatomic, weak) DJIBattery *battery;
 @property (weak, nonatomic) IBOutlet UITableView *logView;
 @property (nonatomic) BOOL isStarted;
 @property (nonatomic, strong) NSMutableArray *logList;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yawLabel;
 @property (weak, nonatomic) IBOutlet YawView *yawView;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *updateBatteryTimer;
 @property (weak, nonatomic) IBOutlet UILabel *cameraLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rotateLabel;
 @property (nonatomic) int cameraDuration;
@@ -37,6 +39,10 @@
 @property (nonatomic) float altitude;
 @property (weak, nonatomic) IBOutlet UILabel *altitudeLabel;
 @property (nonatomic) BOOL isConnected;
+@property (nonatomic, assign) int powerLevel;
+@property (nonatomic, assign) NSInteger fullChargeVolume;
+@property (nonatomic, assign) NSInteger currentVolume;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
 
 @end
 
@@ -56,6 +62,7 @@
     _drone.mainController.mcDelegate = self;
     self.mGimbal = (DJIInspireGimbal *)_drone.gimbal;
     self.camera = (DJIInspireCamera *)_drone.camera;
+    self.battery = _drone.smartBattery;
     
     
     _navigation = (id<DJINavigation>)_drone.mainController;
@@ -76,8 +83,10 @@
     self.cameraDuration = 2;
     self.rotateDuration = 3;
     self.altitude = 0;
+    [self updateBatteryInfo];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_TIME target:self selector:@selector(elapse) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(updateBatteryInfo) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,6 +175,7 @@
 -(void) mainController:(DJIMainController*)mc didUpdateSystemState:(DJIMCSystemState*)state
 {
     self.altitude = [state altitude];
+    self.powerLevel = [state powerLevel];
 }
 
 - (IBAction)plusButtonDidTouch:(id)sender {
@@ -474,6 +484,20 @@
     self.altitudeLabel.text = altitudeText;
     [self.yawView setCurrentYaw:currentYaw];
     [self.yawView setNeedsDisplay];
+}
+
+- (void)updateBatteryInfo {
+    [self.battery updateBatteryInfo:^(DJIError *error) {
+        self.fullChargeVolume = [self.battery fullChargeVolume];
+        self.currentVolume = [self.battery currentElectricity];
+        if (self.fullChargeVolume == 0 || self.currentVolume == 0) {
+            self.currentVolume = 0;
+            self.fullChargeVolume = 100;
+        }
+        CGFloat percent = self.currentVolume/(CGFloat)self.fullChargeVolume;
+        NSString *batteryLabelText = [[NSString alloc] initWithFormat:@"电量:%.2f%%", percent];
+        self.batteryLabel.text = batteryLabelText;
+    }];
 }
 
 - (IBAction)cameraPlusButtonDidTouch:(id)sender {

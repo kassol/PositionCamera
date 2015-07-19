@@ -131,20 +131,20 @@
 }
 - (IBAction)currentInfoButtonDidTouch:(id)sender {
     
-    NSString* message = [[NSString alloc]
-                         initWithFormat:@"PitchEnable: %@ , RollEnable: %@ , YawEnable: %@  PitchMin=%lf , PitchMax=%lf  RollMin=%lf , RollMax=%lf  YawMin=%lf , YawMax=%lf currentPitch=%d , currentRoll=%d , currentYaw=%d",
-                         self.gimbalCapacity.pitchAvailable ? @"true" : @"false",
-                         self.gimbalCapacity.rollAvailable ? @"true" : @"false",
-                         self.gimbalCapacity.yawAvailable ? @"true" : @"false",
-                         self.pitchMin,
-                         self.pitchMax,
-                         self.rollMin,
-                         self.rollMax,
-                         self.yawMin,
-                         self.yawMax,
-                         self.currentPitch,
-                         self.currentRoll,
-                         self.currentYaw];
+//    NSString* message = [[NSString alloc]
+//                         initWithFormat:@"PitchEnable: %@ , RollEnable: %@ , YawEnable: %@  PitchMin=%lf , PitchMax=%lf  RollMin=%lf , RollMax=%lf  YawMin=%lf , YawMax=%lf currentPitch=%d , currentRoll=%d , currentYaw=%d",
+//                         self.gimbalCapacity.pitchAvailable ? @"true" : @"false",
+//                         self.gimbalCapacity.rollAvailable ? @"true" : @"false",
+//                         self.gimbalCapacity.yawAvailable ? @"true" : @"false",
+//                         self.pitchMin,
+//                         self.pitchMax,
+//                         self.rollMin,
+//                         self.rollMax,
+//                         self.yawMin,
+//                         self.yawMax,
+//                         self.currentPitch,
+//                         self.currentRoll,
+//                         self.currentYaw];
     
     /*UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
      [alertView show];*/

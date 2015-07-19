@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRs-wW-WeS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MRs-wW-WeS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -492,6 +492,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电量:100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mc9-TI-NUT">
+                                <rect key="frame" x="150" y="100" width="100" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="66F-bi-6wc"/>
+                                    <constraint firstAttribute="height" constant="25" id="ajE-MD-t24"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -502,6 +513,7 @@
                             <constraint firstAttribute="centerX" secondItem="AO8-r3-Ojd" secondAttribute="centerX" constant="72" id="6i9-4Y-4ii"/>
                             <constraint firstItem="VpC-Mr-Xxd" firstAttribute="width" secondItem="ps1-pD-0rp" secondAttribute="width" id="7I2-su-zgz"/>
                             <constraint firstItem="Cc4-BX-zDg" firstAttribute="top" secondItem="FtJ-RZ-wZw" secondAttribute="bottom" constant="21" id="7zx-P6-VnA"/>
+                            <constraint firstAttribute="centerX" secondItem="Mc9-TI-NUT" secondAttribute="centerX" constant="100" id="8rW-EE-3QT"/>
                             <constraint firstItem="eEl-tB-HuT" firstAttribute="trailing" secondItem="ps1-pD-0rp" secondAttribute="trailingMargin" id="8uV-vj-ecz"/>
                             <constraint firstItem="YfN-wa-hdp" firstAttribute="top" secondItem="AO8-r3-Ojd" secondAttribute="bottom" constant="21" id="D1B-qu-wkr"/>
                             <constraint firstItem="0Uf-ta-OXF" firstAttribute="trailing" secondItem="ps1-pD-0rp" secondAttribute="trailingMargin" id="Eed-cl-p2P"/>
@@ -530,12 +542,14 @@
                             <constraint firstItem="eEl-tB-HuT" firstAttribute="top" secondItem="bIH-7o-p4m" secondAttribute="bottom" constant="20" id="p0b-52-Z3N"/>
                             <constraint firstItem="yKz-lY-JiJ" firstAttribute="top" secondItem="aog-Dv-u8C" secondAttribute="bottom" constant="12" id="qPe-xV-ocg"/>
                             <constraint firstItem="MdC-Md-XeU" firstAttribute="top" secondItem="L1M-yi-2T2" secondAttribute="bottom" constant="20" id="qZg-wl-5Mo"/>
+                            <constraint firstItem="Mc9-TI-NUT" firstAttribute="top" secondItem="i1I-Ch-WPG" secondAttribute="bottom" constant="10" id="s7v-Wu-AGI"/>
                             <constraint firstAttribute="centerX" secondItem="lZf-yQ-65h" secondAttribute="centerX" constant="-100" id="tD0-Tb-J98"/>
                             <constraint firstItem="MdC-Md-XeU" firstAttribute="leading" secondItem="ps1-pD-0rp" secondAttribute="leadingMargin" id="y0V-XX-scC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="altitudeLabel" destination="i1I-Ch-WPG" id="bNH-NE-4tk"/>
+                        <outlet property="batteryLabel" destination="Mc9-TI-NUT" id="5hq-qa-dAR"/>
                         <outlet property="cameraLabel" destination="FtJ-RZ-wZw" id="S3l-gC-Zjb"/>
                         <outlet property="logView" destination="VpC-Mr-Xxd" id="2m7-O2-cBq"/>
                         <outlet property="rotateLabel" destination="Cc4-BX-zDg" id="VEu-Lq-DiN"/>

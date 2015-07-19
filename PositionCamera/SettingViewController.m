@@ -1580,12 +1580,12 @@
             NSString* message = nil;
             if (error.errorCode == ERR_Successed) {
                 message = @"Format SDCard Success";
-                NSLog(message);
+                NSLog(@"%@", message);
                 
             }
             else{
                 message = @"Format SDCard  Failed";
-                NSLog(message);
+                NSLog(@"%@", message);
             }
             UIAlertView* alertView1 = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView1 show];
